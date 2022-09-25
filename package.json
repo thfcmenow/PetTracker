@@ -1,0 +1,26 @@
+{
+  "name": "ASA",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thfcmenow/ASA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thfcmenow/ASA"
+  },
+  "homepage": "https://github.com/thfcmenow/ASA#readme",
+  "dependencies": {
+    "addsearch-js-client": "^0.7.0",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "fs": "0.0.1-security"
+  }
+}
