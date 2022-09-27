@@ -61,22 +61,35 @@
      // setup from imported json
     var config = <%-JSON.stringify(data)%>
    
-    data = config
-   
+    console.log(config)
+    data = JSON.parse(config)
+    console.log("1",data)
+    data = data[0].props
+   console.log("2",data)
 
     // check in support
     update = (node) => {
         // hide button
         $("#" + node.replace(/\//g, "")).parent().hide()
+
+        console.log("node",node)
+        console.log("3",data)
         // update json
-        let index = data.Dates.findIndex(object => {
+        console.log("4",data.dates)
+        
+
+        let index = data.dates.findIndex(object => {
             return object.date === node;
         });
-        data.RunningTotal = data.RunningTotal - data.Visit
-        data.Count = parseInt(data.Count) + 1
+       /* data.RunningTotal = data.RunningTotal - data.Visit
+        data.Count = parseInt(data.Count) + 1*/
       
-        data.Dates[index].complete = true
-        $.get("/update", { main: data}, function (res) {
+        data.dates[index].completed = "true"
+
+
+        console.log("5",data)
+        
+        $.get("/update", { main: data.dates}, function (res) {
             data = JSON.parse(res)
             $("#results").html()
             renderScreen()
@@ -86,26 +99,31 @@
     // set up header
     renderScreen = () => {
     console.log(data)
-    $("#Name").html(data.Name)
+    /*$("#Name").html(data.Name)
     $("#Visit").html("$" + data.Visit)
     $("#Paid").html("$" + data.Paid)
     $("#Count").html(data.Count + " / 29")
-    $("#RunningTotal").html("$" + data.RunningTotal)
+    $("#RunningTotal").html("$" + data.RunningTotal)*/
+    $("#Name").html("Yuki")
+    $("#Visit").html("$" + "20")
+    $("#Paid").html("$" + "580")
+    $("#Count").html("0"+ " / 29")
+    $("#RunningTotal").html("$" + "580")
     $("#TodaysDate").html("<strong>" + tdate + "</strong>")
 
     var temp= ""
-    for(x=0; x < data.Dates.length; x++){
+    for(x=0; x < data.dates.length; x++){
         //console.log(data.Dates[x].date + ":  " + data.Dates[x].day);
-        if (data.Dates[x].complete !== 'true')
+        if (data.dates[x].completed !== 'true')
         {
         temp += '<div style=\"margin-top:11px\" class="row details actual">'
        
-        temp += '<div class="col-3" id=' + data.Dates[x].date.replace(/\//g, "") + ' class="entryDate">' + data.Dates[x].date + '</div>'
-        temp += '<div class="col-3" class="entryCharge">' + data.Dates[x].day + '</div>'
-        temp += '<div class="col-2">' + "$" + data.Visit + '</div>'
+        temp += '<div class="col-3" id=' + data.dates[x].date.replace(/\//g, "") + ' class="entryDate">' + data.dates[x].date + '</div>'
+        temp += '<div class="col-3" class="entryCharge">' + data.dates[x].day + '</div>'
+        temp += '<div class="col-2">' + "$" + "20" + '</div>'
 
-        if (data.Dates[x].date == tdate) {
-        temp += '<div class="col-4">' + '<button onclick=\"update(`' + data.Dates[x].date + '`)\" style=\"font-size:10px !important\" class=\"btn btn-warning\">Check-In</button>' + '</div>'
+        if (data.dates[x].date == tdate) {
+        temp += '<div class="col-4">' + '<button onclick=\"update(`' + data.dates[x].date + '`)\" style=\"font-size:10px !important\" class=\"btn btn-warning\">Check-In</button>' + '</div>'
         }
         
         
