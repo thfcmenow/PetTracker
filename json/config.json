@@ -1,1 +1,155 @@
-{"Name":"Yuki","Client Paid":"true","Count":"0","Paid":"580","RunningTotal":"580","Visit":"20","Dates":[{"date":"9/25/2022","day":"Sunday","complete":"false"},{"date":"9/27/2022","day":"Tuesday","complete":"false"},{"date":"9/28/2022","day":"Wednesday","complete":"false"},{"date":"9/29/2022","day":"Thursday","complete":"false"},{"date":"10/03/2022","day":"Monday","complete":"false"},{"date":"10/04/2022","day":"Tuesday","complete":"false"},{"date":"10/05/2022","day":"Wednesday","complete":"false"},{"date":"10/06/2022","day":"Thursday","complete":"false"},{"date":"10/10/2022","day":"Monday","complete":"false"},{"date":"10/11/2022","day":"Tuesday","complete":"false"},{"date":"10/12/2022","day":"Wednesday","complete":"false"},{"date":"10/13/2022","day":"Thursday","complete":"false"},{"date":"10/17/2022","day":"Monday","complete":"false"},{"date":"10/18/2022","day":"Tuesday","complete":"false"},{"date":"10/19/2022","day":"Wednesday","complete":"false"},{"date":"10/20/2022","day":"Thursday","complete":"false"}]}
+{
+    "Name": "Yuki, Prima, & LuLu",
+    "Client Paid": "true",
+    "Count": "0",
+    "Paid": "580",
+    "RunningTotal": "580",
+    "Visit": "20",
+    "Dates": [
+      {
+        "date": "9/27/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "9/28/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "9/29/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "10/03/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "10/04/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/05/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/06/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "10/10/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "10/11/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/12/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/13/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "10/17/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "10/18/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/19/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/20/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "10/24/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "10/25/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/26/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "10/27/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "10/31/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "11/1/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "11/2/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "11/3/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "11/7/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "11/8/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      },
+      {
+        "date": "11/9/2022",
+        "day": "Wednesday",
+        "complete": "false"
+      },
+      {
+        "date": "11/10/2022",
+        "day": "Thursday",
+        "complete": "false"
+      },
+      {
+        "date": "11/14/2022",
+        "day": "Monday",
+        "complete": "false"
+      },
+      {
+        "date": "11/15/2022",
+        "day": "Tuesday",
+        "complete": "false"
+      }
+    ]
+  }
