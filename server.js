@@ -6,11 +6,11 @@ const app = express()
 const path = require('path');
 const port = process.env.PORT || 3000;
 
-process.env.CYCLIC_DB = 'zany-gold-armadillo-bootCyclicDB'
+/*process.env.CYCLIC_DB = 'zany-gold-armadillo-bootCyclicDB'
 const CyclicDb = require("cyclic-dynamodb")
-const db = CyclicDb("zany-gold-armadillo-bootCyclicDB")
+const db = CyclicDb("zany-gold-armadillo-bootCyclicDB")*/
 
-// const config = require("./json/config.json");
+const config = require("./json/config.json");
 
 //setting view engine to ejs
 app.set("view engine", "ejs");
@@ -19,25 +19,23 @@ var retData = ""
 
 // retrieve data
 const run = async function(){
-  let pets = db.collection('Pets')
+ /* let pets = db.collection('Pets')
   let work = await pets.item('Yuki').fragment('visits').get()
-  retData = JSON.stringify(work)
- /* let item = await pets.get('Yuki')
-  console.log(item)
-  retData = JSON.stringify(item)
-  console.log(retData)
-  console.log(item.props.Dates)
-  console.log(item.props.Dates[0].complete)
-  let yuki = await pets.set(item.props.Dates[0].complete,"true")*/
+  retData = JSON.stringify(work)*/
+ //let item = await pets.get('Yuki')
+
+  //retData = JSON.stringify(item)
+ 
+  //let yuki = await pets.set(item.props.Dates[0].complete,"true")*/
 }
 
-run()
+//run()
 
 
 // index
 app.get('/', function (req, res) {
    res.render("index", {
-    data: retData
+    data: config
   });
 });
 
