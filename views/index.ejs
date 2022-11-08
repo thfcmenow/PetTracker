@@ -48,7 +48,13 @@
 
         </div>
 
-
+        <div class="admin" style="display:none">
+        <h4 style="margin-top:70px" class="noprint">Admin</h4>
+        <div class="mb-3 noprint">
+            <label for="ignoredDates" class="form-label">Ignored Dates</label>
+            <input type="" class="form-control" id="ignoredDates" placeholder="Ignored Dates (sep ^)">
+        </div>
+        </div>
         
     </div>
 </body>
@@ -56,51 +62,35 @@
 
 <!-- local script -->
 <script>
+
+var checker = []
+
+    if (window.location.href.indexOf("admin") > -1) {
+        $(".admin").show()
+      
+        $("#ignoredDates").blur(function(){
+        let sendVal = $("#ignoredDates").val()
+        sendVal == "" ? sendVal = "blank" : ""
+        $.get("/admin/" + sendVal,function(results){
+            console.log(results)
+        })
+    })
+    }
+
+  
+
     var main = ""
     highlightFail = false
     var icon = '<svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 16.292969 8.2929688 L 10 14.585938 L 7.7070312 12.292969 L 6.2929688 13.707031 L 10 17.414062 L 17.707031 9.7070312 L 16.292969 8.2929688 z"/></svg>'
 
     var tdate = new Date(Date.now()).toLocaleString().split(',')[0]
-   // var tdate = "12/11/2022"
 
      // setup from imported json
     var config = <%-JSON.stringify(data)%>
    
     console.log(config)
     data = config
-    console.log("1",data)
     $("#mainName").html(data.Name)
-    //data = data[0].props
-   // console.log("2",data)
-
-    // check in support
-    update = (node) => {
-        // hide button
-        $("#" + node.replace(/\//g, "")).parent().hide()
-
-        console.log("node",node)
-        console.log("3",data)
-        // update json
-        console.log("4",data.dates)
-        
-
-        let index = data.dates.findIndex(object => {
-            return object.date === node;
-        });
-       /* data.RunningTotal = data.RunningTotal - data.Visit
-        data.Count = parseInt(data.Count) + 1*/
-      
-        data.dates[index].completed = "true"
-
-
-        console.log("5",data)
-        
-        $.get("/update", { main: data.dates}, function (res) {
-            data = JSON.parse(res)
-            $("#results").html()
-            renderScreen()
-        });
-    }
 
     // set up header
     renderScreen = () => {
@@ -115,25 +105,25 @@
 
     var temp= ""
     count = 0
-    for(x=0; x < data.Dates.length; x++){
-        //console.log(data.Dates[x].date + ":  " + data.Dates[x].day);
-        // if (data.dates[x].completed !== 'true')
-       // {
+    for(x=data.Dates.length-1; x > -1; x--){
+   
         temp += '<div style=\"margin-top:11px\" class="row details actual">'
-       
-        temp += '<div class="col-3" id=' + data.Dates[x].date.replace(/\//g, "") + ' class="entryDate">' + data.Dates[x].date + '</div>'
+    
+        if (!checker.includes(data.Dates[x].date.replace(/\//g, ""))){
+        temp += '<div class="col-3 miniDate" id=' + data.Dates[x].date.replace(/\//g, "") + ' class="entryDate">' + data.Dates[x].date + '</div>'
         temp += '<div class="col-3" class="entryCharge">' + data.Dates[x].day + '</div>'
         temp += '<div class="col-2">' + "$" + "20" + '</div>'
         if (Date.parse(data.Dates[x].date) <= Date.parse(tdate)) {
-        //temp += '<div class="col-4">' + '<button onclick=\"update(`' + data.dates[x].date + '`)\" style=\"font-size:10px !important\" class=\"btn btn-warning\">Check-In</button>' + '</div>'
-        temp += "<div class='col-4'>" + icon + "</div>"
+         temp += "<div class='col-4'>" + icon + "</div>"
         count ++
+        }
     }
 
     $("#Count").html(count + " / " + 29)
     minusamt = count * 20
     finalam = 580 - minusamt
     $("#RunningTotal").html("$" + finalam)
+
         
         
         temp += '</div>'
@@ -145,7 +135,18 @@
 }
     
 // page load run
-renderScreen()
+
+$.get("/admin/read",function(results){
+            $("#ignoredDates").val(results)
+            let comp = results.split("^")
+            checker = comp
+
+        })
+
+setTimeout(() => {
+    renderScreen()
+}, 200);
+
 
      
 </script>
@@ -156,5 +157,5 @@ renderScreen()
 <footer>
     <%- include('./partials/footer'); %>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
