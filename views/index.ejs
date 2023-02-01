@@ -1,35 +1,6 @@
 <%- include('./partials/header'); %>
 
 
-    <style>
-        .details {
-            font-size: 0.9em !important
-        }
-
-        ;
-
-        button {
-            font-size: 0.9em !important
-        }
-
-        ;
-
-        .actual {
-            margin-top: 9px
-        }
-
-        ;
-
-        #TodaysDate {
-            font-weight: 900;
-            font-size: 1.1em
-        }
-
-        strong {
-            font-size: 1.3em
-        }
-    </style>
-
     <body>
 
 
@@ -52,6 +23,8 @@
 
 
         </div>
+        
+
     </body>
 
 
@@ -145,6 +118,34 @@
             border-bottom: 0px solid white;
             font-weight:700
         }
+
+        .uk-container {
+            margin-top:20px;
+            margin-bottom:50px
+        }
+
+        .uk-heading-small{
+            margin-bottom:40px
+        }
+
+        img {
+  --_g: 10% /45% 45% no-repeat linear-gradient(#000 0 0);
+  --m:
+    left   var(--_i,0%) top    var(--_g),
+    bottom var(--_i,0%) left   var(--_g),
+    top    var(--_i,0%) right  var(--_g),
+    right  var(--_i,0%) bottom var(--_g);
+  -webkit-mask: var(--m);
+          mask: var(--m);
+  filter: grayscale();
+  transition: .3s linear;
+  cursor: pointer;
+}
+img:hover {
+  --_i: 10%;
+  filter: grayscale(0);
+}
+
 
         
            
