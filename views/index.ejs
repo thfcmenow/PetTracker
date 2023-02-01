@@ -1,161 +1,153 @@
 <%- include('./partials/header'); %>
 
 
-<style>
-    .details {font-size:0.9em !important};
-    button {font-size:0.9em !important};
-    .actual {margin-top:9px};
-    #TodaysDate {font-weight:900;font-size:1.1em}
-    strong {font-size:1.3em}
-</style>
-
-<body>
-    <div class="container">
-
-        <!-- header -->
-        <div class="row">
-            <div class="col-8">
-                <h2 id="mainName"></h2>
-            </div>
-            <div class="col-4">
-                <img src="/yuki.JPG" width="100px">
-            </div>
-        </div>
-		
-        <hr>
-
-        <!-- client details -->
-        <div class="row details">
-            <div class="col-2">Recieved</div>
-            <div class="col-2" id="Paid">-</div>
-            <div class="col-2">Visit</div>
-            <div class="col-2" id="Visit">-</div>
-            <div class="col-2" id="TodaysDate">-</div>
-        </div>
-
-        <div class="row details">
-            <div class="col-2">Balance</div>
-            <div class="col-2" id="RunningTotal">-</div>
-            <div class="col-2">Count</div>
-            <div class="col-2" id="Count"></div>
-           
-        </div>
-
-        <hr>
-
-        <!-- dates -->
-        <div id="results" class="row">
-
-        </div>
-
-        <div class="admin" style="display:none">
-        <h4 style="margin-top:70px" class="noprint">Admin</h4>
-        <div class="mb-3 noprint">
-            <label for="ignoredDates" class="form-label">Ignored Dates</label>
-            <input type="" class="form-control" id="ignoredDates" placeholder="Ignored Dates (sep ^)">
-        </div>
-        </div>
-        
-    </div>
-</body>
-
-
-<!-- local script -->
-<script>
-
-var checker = []
-
-    if (window.location.href.indexOf("admin") > -1) {
-        $(".admin").show()
-      
-        $("#ignoredDates").blur(function(){
-        let sendVal = $("#ignoredDates").val()
-        sendVal == "" ? sendVal = "blank" : ""
-        $.get("/admin/" + sendVal,function(results){
-            console.log(results)
-        })
-    })
-    }
-
-  
-
-    var main = ""
-    highlightFail = false
-    var icon = '<svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 16.292969 8.2929688 L 10 14.585938 L 7.7070312 12.292969 L 6.2929688 13.707031 L 10 17.414062 L 17.707031 9.7070312 L 16.292969 8.2929688 z"/></svg>'
-
-    var tdate = new Date(Date.now()).toLocaleString().split(',')[0]
-
-     // setup from imported json
-    var config = <%-JSON.stringify(data)%>
-   
-    console.log(config)
-    data = config
-    $("#mainName").html(data.Name)
-
-    // set up header
-    renderScreen = () => {
-    console.log(data)
-    $("#Name").html(data.Name)
-    $("#Visit").html("$" + data.Visit)
-    $("#Paid").html("$" + data.Paid)
-    $("#Count").html(data.Count + " / 29")
-    $("#RunningTotal").html("$" + data.RunningTotal)
-    
-    $("#TodaysDate").html("<strong>" + tdate + "</strong>")
-
-    var temp= ""
-    count = 0
-    for(x=data.Dates.length-1; x > -1; x--){
-   
-        temp += '<div style=\"margin-top:11px\" class="row details actual">'
-    
-        if (!checker.includes(data.Dates[x].date.replace(/\//g, ""))){
-        temp += '<div class="col-3 miniDate" id=' + data.Dates[x].date.replace(/\//g, "") + ' class="entryDate">' + data.Dates[x].date + '</div>'
-        temp += '<div class="col-3" class="entryCharge">' + data.Dates[x].day + '</div>'
-        temp += '<div class="col-2">' + "$" + "20" + '</div>'
-        if (Date.parse(data.Dates[x].date) <= Date.parse(tdate)) {
-         temp += "<div class='col-4'>" + icon + "</div>"
-        count ++
+    <style>
+        .details {
+            font-size: 0.9em !important
         }
-    }
 
-    $("#Count").html(count + " / " + 29)
-    minusamt = count * 20
-    finalam = 580 - minusamt
-    $("#RunningTotal").html("$" + finalam)
+        ;
 
-        
-        
-        temp += '</div>'
-        $("#results").append(temp)
-    
-        temp = ""
-       // $("#lob").append("<option value='" + config[key].options + "'>" + key + "</option>")
-    }
-}
-    
-// page load run
+        button {
+            font-size: 0.9em !important
+        }
 
-$.get("/admin/read",function(results){
-            $("#ignoredDates").val(results)
-            let comp = results.split("^")
-            checker = comp
+        ;
+
+        .actual {
+            margin-top: 9px
+        }
+
+        ;
+
+        #TodaysDate {
+            font-weight: 900;
+            font-size: 1.1em
+        }
+
+        strong {
+            font-size: 1.3em
+        }
+    </style>
+
+    <body>
+
+
+        <div class="uk-container">
+
+            <h1 class="uk-heading-small">YPL Tracker <img class="uk-align-right" src="/yuki.JPG" width="100px"></h1>
+
+            <hr class="uk-divider-icon">
+
+            <div class="uk-child-width-expand@s uk-text-center startPoint" uk-grid>
+
+            </div>
+
+            <hr class="uk-divider-icon">
+
+            <div class="resultTable">
+
+            </div>
+
+
+
+        </div>
+    </body>
+
+
+    <!-- local script -->
+    <script>
+
+        var main = ""
+        highlightFail = false
+
+        var tdate = new Date(Date.now()).toLocaleString().split(',')[0]
+
+        // setup from imported json
+        var config = <%- JSON.stringify(data) %>
+
+        data = config
+
+        // setup cards
+        var cardHTML = "<div>"
+        cardHTML += '<div role="~name~" class="uk-card uk-card-default uk-card-body">~item~</div>'
+        cardHTML += "</div>"
+
+        class card {
+            constructor(html, id) {
+                this.html = html;
+                this.id = id;
+            }
+        }
+
+        config.init.forEach(function (element) {
+            let newCard = new card(cardHTML.replace("~item~", element.id), element.id)
+            newCard.html = newCard.html.replace("~name~", element.name)
+            $(".startPoint").append(newCard.html)
+            console.log(newCard.html)
+        })
+
+        $(".uk-card").click("on", function () {
+            // UI
+            $(".resultTable").html("")
+            $(".uk-card").css("background-color","#f8f8f8")
+            $(".uk-card").css("font-weight","400")
+            $(this).css("background-color","#f3ebb1")
+            $(this).css("font-weight","600")
+
+            // DATA
+            let name = $(this).attr("role")
+            let index = config.init.findIndex(x => x.name === name);
+            let details = "<div class='firstRow'>Recieved: $" + config.init[index].Paid + "</div>"
+            details += "<div class='firstRow'>Visits: " + config[name].length + "</div>"
+            details += "<div class='firstRow'>Visits Paid For: $" + config[name].length * config.Visit + "</div>"
+
+            // RENDER
+            $(".resultTable").append(details)
+            config[name].forEach(function (element) {
+                console.log(element)
+                let row = "<div>" + element.date + "</div>"
+                row += "<div>" + element.day + "</div>"
+                row += "<div>" + "$" + config.Visit + "</div>"
+                $(".resultTable").append(row)
+            })
 
         })
 
-setTimeout(() => {
-    renderScreen()
-}, 200);
-
-
-     
-</script>
+    </script>
 
 
 
 
-<footer>
-    <%- include('./partials/footer'); %>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</html>
+    <footer>
+        <%- include('./partials/footer'); %>
+    </footer>
+
+    <style>
+        .uk-card {
+            cursor: pointer
+        }
+
+        .resultTable {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .resultTable div {
+            margin-top:10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgb(236, 233, 233)
+        }
+
+        .firstRow {
+             margin-top:10px;
+            margin-bottom: 30px;
+            border-bottom: 0px solid white;
+            font-weight:700
+        }
+
+        
+           
+    </style>
+
+    </html>

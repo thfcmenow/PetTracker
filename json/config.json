@@ -1,155 +1,240 @@
 {
     "Name": "Yuki, Prima, & LuLu",
-    "Client Paid": "true",
-    "Count": "0",
     "Paid": "580",
-    "RunningTotal": "580",
-    "Visit": "20",
-    "Dates": [
+    "Visit": 20,
+    "init":[
+      { 
+        "Start":"9/27/2022",
+        "End":"11/15/2022",
+        "id":"2022-09-27 to 2022-11-15",
+        "Paid":"580",
+        "name":"Set-001"
+      },
+    {     
+        "Start":"12/20/2022",
+        "Paid":"260",
+        "End":"01/30/2023",
+        "id":"2022-12-20 to 2022-01-31",
+        "name":"Set-002"
+    }
+    ],
+    "Set-001" : [
       {
         "date": "9/27/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "9/28/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "9/29/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/03/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/04/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/05/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/06/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/10/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/11/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/12/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/13/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/17/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/18/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/19/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/20/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/24/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/25/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/26/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/27/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "10/31/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/1/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/2/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/3/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/7/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/8/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/9/2022",
         "day": "Wednesday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/10/2022",
         "day": "Thursday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/14/2022",
         "day": "Monday",
-        "complete": "false"
+        "complete": false
       },
       {
         "date": "11/15/2022",
         "day": "Tuesday",
-        "complete": "false"
+        "complete": false
       }
-    ]
-  }
+        ],
+     "Set-002" : [
+        {
+          "date": "12/20/2022",
+        "day": "Tuesday",
+        "complete": false
+        },
+        {
+          "date": "12/28/2022",
+        "day": "Wednesday",
+        "complete": false
+        },
+        {
+          "date": "12/29/2022",
+        "day": "Thursday",
+        "complete": false
+        },
+        {
+          "date": "01/04/2023",
+        "day": "Wednesday",
+        "note": "Tornado Warning Day",
+        "complete": false
+        },
+        {
+          "date": "01/09/2023",
+        "day": "Monday",
+        "complete": false
+        },
+        {
+          "date": "01/10/2023",
+        "day": "Tuesday",
+        "complete": false
+        },
+        {
+          "date": "01/11/2023",
+        "day": "Wednesday",
+        "complete": false
+        },
+        {
+          "date": "01/17/2023",
+        "day": "Tuesday",
+        "complete": false
+        },
+        {
+          "date": "01/23/2023",
+        "day": "Monday",
+        "complete": false
+        },
+        {
+          "date": "01/24/2023",
+        "day": "Tuesday",
+        "complete": false
+        },
+        {
+          "date": "01/25/2023",
+        "day": "Wednesday",
+        "complete": false
+        },
+        {
+          "date": "01/30/2023",
+        "day": "Monday",
+        "complete": false
+        },
+        {
+          "date": "01/31/2023",
+        "day": "Tuesday",
+        "complete": false
+        }
+
+
+  ]
+}
+
+  
