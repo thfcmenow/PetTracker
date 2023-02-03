@@ -1,11 +1,9 @@
 <%- include('./partials/header'); %>
-
-
     <body>
-
         <div class="uk-container">
-
-            <h1 class="uk-heading-small">YPL Tracker <img class="uk-align-right" src="./public/img/yuki.jpg" width="100px"></h1>
+            <h1 class="uk-heading-small"><span id="title"></span>
+                <img class="uk-align-right" src="./public/img/yuki.jpg" width="100px">
+            </h1>
 
             <hr class="uk-divider-icon">
 
@@ -20,87 +18,9 @@
             </div>
 
         </div>
-
     </body>
-
-
-    <!-- local script -->
-    <script>
-
-        
-        // setup from imported json
-        // var config = <%- JSON.stringify(data) %> // ejs scriptlet
-        // data = config
-
-        // setup cards
-        var cardHTML = "<div>"
-        cardHTML += '<div role="~name~" class="uk-card uk-card-default uk-card-body">~item~</div>'
-        cardHTML += "</div>"
-
-        class card {
-            constructor(html, id) {
-                this.html = html;
-                this.id = id;
-            }
-        }
-
-       
-
-        function setupListeners(config){
-            $(".uk-card").click("on", function () {
-                // UI
-                $(".resultTable").html("")
-                $(".uk-card").css("background-color", "#f8f8f8")
-                $(".uk-card").css("font-weight", "400")
-                $(this).css("background-color", "#f3ebb1")
-                $(this).css("font-weight", "600")
-
-                // DATA
-                let name = $(this).attr("role")
-                let index = config.init.findIndex(x => x.name === name);
-                let details = "<div class='firstRow'>Recieved: $" + config.init[index].Paid + "</div>"
-                details += "<div class='firstRow'>Visits: " + config[name].length + "</div>"
-                details += "<div class='firstRow'>Visits Paid For: $" + config[name].length * config.Visit + "</div>"
-
-                // RENDER
-                $(".resultTable").append(details)
-                config[name].forEach(function (element) {
-                    let row = "<div class='cell'>" + element.date + "</div>"
-                    row += "<div class='cell'>" + element.day + "</div>"
-                    row += "<div class='cell'>" + "$" + config.Visit + "</div>"
-                    $(".resultTable").append(row)
-                })
-
-                let results = document.getElementById("results");
-
-               $(".cell").show()
-                
-
-            })
-        }
-
-        // main routine
-        $.get("./json/config.json", function (res) {
-
-            let config = res
-
-            config.init.forEach(function (element) {
-                let newCard = new card(cardHTML.replace("~item~", element.id), element.id)
-                newCard.html = newCard.html.replace("~name~", element.name)
-                $(".startPoint").append(newCard.html)
-            })
-
-            setupListeners(config) // for cards
-
-        }) // get
-
-    </script>
-
-
-
 
     <footer>
         <%- include('./partials/footer'); %>
     </footer>
-
     </html>
