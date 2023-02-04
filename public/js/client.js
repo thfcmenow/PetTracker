@@ -40,15 +40,18 @@
             $(this).css("background-color", "#f3ebb1")
             $(this).css("font-weight", "600")
 
-            // DATA
+            // Prepare Data
             let name = $(this).attr("role")
             let index = config.init.findIndex(x => x.name === name);
+
+            // Header Details
             let details = "<div class='firstRow'>Recieved: $" + config.init[index].Paid + "</div>"
-            details += "<div class='firstRow'>Visits: " + config[name].length + "</div>"
+            details += "<div class='firstRow'>Visits: " + config[name].length + "</div><div class='firstRow'>" + "Money Left: $" + (config.init[index].Paid - (config[name].length * config.Visit)) + "</div>"
             details += "<div class='firstRow'>Visits Paid For: $" + config[name].length * config.Visit + "</div>"
 
             // RENDER
-            $(".resultTable").append(details)
+            $(".pre_resultTable").html(details)
+
             config[name].forEach(function (element) {
                 let row = "<div class='cell'>" + element.date + "</div>"
                 row += "<div class='cell'>" + element.day + "</div>"
