@@ -27,7 +27,47 @@
     ],
     "Set-003" : [
       {
-        "date": "02/01/2022",
+        "date": "02/01/2023",
+        "day": "Wednesday",
+        "complete": false
+      },
+      {
+        "date": "02/06/2023",
+        "day": "Monday",
+        "complete": false
+      },
+      {
+        "date": "02/07/2023",
+        "day": "Tuesday",
+        "complete": false
+      },
+      {
+        "date": "02/08/2023",
+        "day": "Monday",
+        "complete": false
+      },
+      {
+        "date": "02/13/2023",
+        "day": "Monday",
+        "complete": false
+      },
+      {
+        "date": "02/14/2023",
+        "day": "Tuesday",
+        "complete": false
+      },
+      {
+        "date": "02/15/2023",
+        "day": "Wednesday",
+        "complete": false
+      },
+      {
+        "date": "02/21/2023",
+        "day": "Tuesday",
+        "complete": false
+      },
+      {
+        "date": "03/01/2023",
         "day": "Wednesday",
         "complete": false
       }
