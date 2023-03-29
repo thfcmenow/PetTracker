@@ -31,6 +31,9 @@
         } ) ;
     }
         
+    var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var d = new Date();
+
     function setupListeners(config) {
         $(".uk-card").click("on", function () {
             // UI
@@ -45,6 +48,7 @@
             let index = config.init.findIndex(x => x.name === name);
 
             // Header Details
+            console.log("config.init",config[name])
             let details = "<div class='firstRow'>Recieved: $" + config.init[index].Paid + "</div>"
             details += "<div class='firstRow'>Visits: " + config[name].length + "</div><div class='firstRow'>" + "Money Left: $" + (config.init[index].Paid - (config[name].length * config.Visit)) + "</div>"
             details += "<div class='firstRow'>Visits Paid For: $" + config[name].length * config.Visit + "</div>"
@@ -54,10 +58,21 @@
 
             config[name].forEach(function (element) {
                 let row = "<div class='cell'>" + element.date + "</div>"
-                row += "<div class='cell'>" + element.day + "</div>"
+                let d = new Date(element.date)
+                let day = weekday[d.getDay()]
+                row += "<div class='cell'>" + day
+                if (element.note !== undefined) {
+                    row += "<li>" + element.note + "</li>"
+                }
+                row += "</div>"
                 row += "<div class='cell'>" + "$" + config.Visit + "</div>"
-                $(".resultTable").append(row)
+                
+               
+                if (element.count !== 0) {
+                    $(".resultTable").append(row)
+                }
             })
+       
 
             // fade in results
             appConfig.useTransitionEffect ? fade( $( ".cell:first" ),appConfig.timer) : $(".cell").show()

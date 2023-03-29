@@ -51,4 +51,13 @@ img:hover {
 --_i: 10%;
 filter: grayscale(0);
 }
+.startPoint {
+    display:grid;
+    grid-template-columns: 45% 45%;
+    gap: 20px
+}
+.uk-card:hover{
+    background-color:yellow
+}
+
 

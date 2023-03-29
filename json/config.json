@@ -27,17 +27,25 @@
     {     
         "Start":"03/02/2023",
         "Paid":"260",
-        "End":"-",
-        "id":"2023-03-02 to ",
+        "End":"03/28/2023",
+        "id":"2023-03-02 to 2023-03-28",
         "name":"Set-004"
     }
     ],
     "Set-004" : [
-      {
-        "date": "03/02/2023",
-        "day": "Thursday",
-        "complete": false
-      }
+      {"date": "03/02/2023","day": "Thursday","complete": false},
+      {"date": "03/06/2023","day": "Thursday","complete": false},
+      {"date": "03/07/2023","day": "Thursday","complete": false},
+      {"date": "03/08/2023","day": "Thursday","complete": false},
+      {"date": "03/14/2023","day": "Thursday","complete": false},
+      {"date": "03/15/2023","day": "Thursday","count":2,"note":"2 hour visit","complete": false},
+      {"date": "03/15/2023","day": "Thursday","count":0,"complete": false},
+      {"date": "03/16/2023","day": "Thursday","complete": false},
+      {"date": "03/21/2023","day": "Thursday","complete": false},
+      {"date": "03/22/2023","day": "Thursday","complete": false},
+      {"date": "03/23/2023","day": "Thursday","complete": false},
+      {"date": "03/27/2023","day": "Thursday","complete": false},
+      {"date": "03/28/2023","day": "Thursday","complete": false}
     ],
     "Set-003" : [
       {
