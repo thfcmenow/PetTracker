@@ -12,7 +12,7 @@
     $("#title").html(appConfig.title)
 
     // setup cards
-    var cardHTML = "<div>"
+    var cardHTML = "<div class='~type~'>"
     cardHTML += '<div role="~name~" class="uk-card uk-card-default uk-card-body">~item~</div>'
     cardHTML += "</div>"
 
@@ -88,9 +88,19 @@
         config.init.forEach(function (element) {
             let newCard = new card(cardHTML.replace("~item~", element.id), element.id)
             newCard.html = newCard.html.replace("~name~", element.name)
+            if (element.type !== undefined) newCard.html = newCard.html.replace("~type~", element.type)
             $(".startPoint").append(newCard.html)
         })
 
         setupListeners(config) // for cards
+
+        // hide archive
+        $(".archive").hide()
+
+        // btn show archive
+        $("#showArchive").on("click",function(){
+            $(".archive").show()
+            $(this).hide()
+        })
 
     }) // get
