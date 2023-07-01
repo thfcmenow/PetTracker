@@ -45,18 +45,22 @@
 
             // Prepare Data
             let name = $(this).attr("role")
-            let index = config.init.findIndex(x => x.name === name);
+            let index = config.findIndex(x => x.id === name);
+            console.log("config",config)
+            console.log("index",index)
 
             // Header Details
-            console.log("config.init",config[name])
-            let details = "<div class='firstRow'>Recieved: $" + config.init[index].Paid + "</div>"
-            details += "<div class='firstRow'>Visits: " + config[name].length + "</div><div class='firstRow'>" + "Money Left: $" + (config.init[index].Paid - (config[name].length * config.Visit)) + "</div>"
-            details += "<div class='firstRow'>Visits Paid For: $" + config[name].length * config.Visit + "</div>"
-
+            console.log("config.init",config[index])
+            let details = "<div class='firstRow'>Received: $" + config[index]["received"] + "</div>"
+            details += "<div class='firstRow'>Visits: " + config[index]["visits"] + "</div>"
+           
             // RENDER
             $(".pre_resultTable").html(details)
 
-            config[name].forEach(function (element) {
+            // get actual records for visit
+            getRecord(name)
+
+           /* config[name].forEach(function (element) {
                 let row = "<div class='cell'>" + element.date + "</div>"
                 let d = new Date(element.date)
                 let day = weekday[d.getDay()]
@@ -71,7 +75,8 @@
                 if (element.count !== 0) {
                     $(".resultTable").append(row)
                 }
-            })
+                
+            })*/
        
 
             // fade in results
@@ -80,15 +85,31 @@
         })
     }
 
-    // main routine
-    $.get("./json/config.json", function (res) {
+function renderRow(data){
+    console.log(data)
+    let row = ""
+    data.forEach(function(element){
+        row += "<div class='cell'>" + element.entry + "</div>"
+        let d = new Date(element.entry)
+        let day = weekday[d.getDay()]
+        row += "<div class='cell'>" + day
+        if (element.note !== undefined) {
+            row += "<li>" + element.note + "</li>"
+        }
+        row += "</div>"
+        row += "<div class='cell'>" + "$20" + "</div>"
+    })
+    $(".resultTable").append(row)
+    
+}
 
-        let config = res
+function dynamo(local){
+    
 
-        config.init.forEach(function (element) {
-            let newCard = new card(cardHTML.replace("~item~", element.id), element.id)
-            newCard.html = newCard.html.replace("~name~", element.name)
-            if (element.type !== undefined) newCard.html = newCard.html.replace("~type~", element.type)
+        let config = JSON.parse(local)
+        config.forEach(function (element) {
+            let newCard = new card(cardHTML.replace("~item~", element.range), element.range)
+            newCard.html = newCard.html.replace("~name~",element.id)
             $(".startPoint").append(newCard.html)
         })
 
@@ -103,4 +124,53 @@
             $(this).hide()
         })
 
-    }) // get
+    } 
+
+    function getRecord(id){
+        let localStore = localStorage.getItem("yuki-" + id)
+        if (localStore == undefined){
+        $.get("./getDetails",{name:id},function(res){
+            local = res
+            console.log(res)
+            localStorage.setItem("yuki-" + id,JSON.stringify(local))
+            renderRow(local)
+        })
+    } else {
+            renderRow(JSON.parse(localStore))
+    }
+    }
+  
+
+    function initialDBSetup(dbVersion){
+        let local = localStorage.getItem("yuki-config")
+
+        // new user
+        if (local == undefined){
+            $.get("./getDetails",{name:"getIndex"},function(res){
+                local = res
+                localStorage.setItem("yuki-config",JSON.stringify(local))
+            })
+        } 
+
+        // check to see if you have the latest data, if not retrieve
+        if (local !== undefined){
+            let localData = JSON.parse(local)
+            let latest = localData.find(x => x.id === dbVersion)
+            if (latest == undefined){
+                $.get("./getDetails",{name:"getIndex"},function(res){
+                    local = res
+                    localStorage.setItem("yuki-config",JSON.stringify(local))
+                    dynamo(local)
+                })
+            } else {
+                dynamo(local)
+            }
+        }
+    }
+
+   // begin
+        $.get("./json/latestDynamo.json", function (res) {
+           let dbVersion = res.version
+           initialDBSetup(dbVersion)
+        })
+    

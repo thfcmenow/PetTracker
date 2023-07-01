@@ -1,3 +1,4 @@
+require('dotenv').config();
 const dbName = process.env.DB_NAME;
 const dbCollection = process.env.DB_COLLECTION;
 
@@ -144,6 +145,7 @@ async function logData() {
     console.log(result.props.data);
 }
 
+setupIndex()
 // control
 // setup()
  // logData();

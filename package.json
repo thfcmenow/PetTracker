@@ -17,9 +17,10 @@
   },
   "homepage": "https://github.com/thfcmenow/ASA#readme",
   "dependencies": {
+    "@cyclic.sh/dynamodb": "^0.0.33",
     "addsearch-js-client": "^0.7.0",
     "cyclic-dynamodb": "0.0.27",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.1.3",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "fs": "0.0.1-security"
