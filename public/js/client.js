@@ -56,7 +56,7 @@
             // RENDER
             $(".pre_resultTable").html(details)
 
-            config[name].forEach(function (element) {
+            config[name].forEach(function (element,index) {
                 let row = "<div class='cell'>" + element.date + "</div>"
                 let d = new Date(element.date)
                 let day = weekday[d.getDay()]
