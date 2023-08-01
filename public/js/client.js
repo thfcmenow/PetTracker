@@ -35,6 +35,7 @@
     var d = new Date();
 
     function setupListeners(config) {
+        $(".uk-card").off()
         $(".uk-card").click("on", function () {
             // UI
             $(".resultTable").html("")
@@ -56,7 +57,40 @@
             // RENDER
             $(".pre_resultTable").html(details)
 
-            config[name].forEach(function (element,index) {
+            var eventDates = []
+            config[name].forEach(function(obj){
+                eventDates.push(obj.date)
+            })
+            /*var eventDates = [
+                '2023-08-01',
+                '2023-08-05',
+                '2023-08-10',
+                // Add more dates as needed...
+              ];
+              */
+             var sdate = moment(eventDates[0], "MM/DD/YYYY");
+             console.log(sdate)
+             $('#calendar').fullCalendar('destroy');
+            $('#calendar').fullCalendar({
+                defaultDate: sdate,
+                defaultView: 'month',
+                events: eventDates.map(function (date) {
+                  return {
+                    title: '$20',
+                    start: date,
+                    
+                  };
+                })
+              }); 
+              $('.fc-button-group').remove()
+              $(".fc-right").remove()
+              $(".fc-time").remove()
+  
+
+         /*   config[name].forEach(function (element,index) {
+
+                
+
                 let row = "<div class='cell'>" + element.date + "</div>"
                 let d = new Date(element.date)
                 let day = weekday[d.getDay()]
@@ -71,11 +105,11 @@
                 if (element.count !== 0) {
                     $(".resultTable").append(row)
                 }
-            })
+            }) */
        
 
             // fade in results
-            appConfig.useTransitionEffect ? fade( $( ".cell:first" ),appConfig.timer) : $(".cell").show()
+            // appConfig.useTransitionEffect ? fade( $( ".cell:first" ),appConfig.timer) : $(".cell").show()
 
         })
     }
