@@ -82,8 +82,8 @@
                   };
                 })
               }); 
-              $('.fc-button-group').remove()
-              $(".fc-right").remove()
+           //   $('.fc-button-group').remove()
+         //     $(".fc-right").remove()
               $(".fc-time").remove()
   
 
