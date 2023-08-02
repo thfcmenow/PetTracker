@@ -13,7 +13,7 @@
 
     // setup cards
     var cardHTML = "<div class='~type~'>"
-    cardHTML += '<div role="~name~" class="uk-card uk-card-default uk-card-body">~item~</div>'
+    cardHTML += '<button role="~name~" class="btn btn-secondary uk-card">~item~</button>'
     cardHTML += "</div>"
 
     class card {
@@ -39,9 +39,9 @@
         $(".uk-card").click("on", function () {
             // UI
             $(".resultTable").html("")
-            $(".uk-card").css("background-color", "#f8f8f8")
-            $(".uk-card").css("font-weight", "400")
-            $(this).css("background-color", "#f3ebb1")
+           // $(".uk-card").css("background-color", "#f8f8f8")
+            $(".uk-card").css("font-weight", "200")
+          //  $(this).css("background-color", "#f3ebb1")
             $(this).css("font-weight", "600")
 
             // Prepare Data
@@ -121,8 +121,10 @@
 
         config.init.forEach(function (element) {
             let newCard = new card(cardHTML.replace("~item~", element.id), element.id)
+            newCard.html = newCard.html.replace(" to ","<br>-<br>")
             newCard.html = newCard.html.replace("~name~", element.name)
-            if (element.type !== undefined) newCard.html = newCard.html.replace("~type~", element.type)
+            if (element.type !== undefined) newCard.html = newCard.html.replace("~type~", element.type + " " + "center")
+            newCard.html = newCard.html.replace("~type~","center")
             $(".startPoint").append(newCard.html)
         })
 

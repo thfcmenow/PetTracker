@@ -1,13 +1,14 @@
 <%- include('./partials/header'); %>
     <body>
-        <div class="uk-container">
-            <h1 class="uk-heading-small"><span id="title"></span>
+        <div class="container">
+            <h1>
+                <span id="title"></span>
                 <img class="uk-align-right" src="./public/img/yuki.jpg" width="100px">
             </h1>
 
             <hr class="uk-divider-icon">
 
-            <div class="uk-child-width-expand@s uk-text-center startPoint" uk-grid>
+            <div style="columns:2" class="startPoint">
 
             </div>
 
@@ -19,10 +20,11 @@
 
             </div>
 
-            <button id="showArchive" class="uk-button uk-button-default uk-align-center">
+            <div style="text-align: center">
+            <button id="showArchive" class="btn btn-secondary">
                 Show Archive
-                <span uk-icon="icon: album"></span>
             </button>
+            </div>
 
         </div>
     </body>
