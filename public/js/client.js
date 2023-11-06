@@ -13,7 +13,7 @@
 
     // setup cards
     var cardHTML = "<div class='~type~'>"
-    cardHTML += '<button role="~name~" class="btn btn-secondary uk-card">~item~</button>'
+    cardHTML += '<button role="~name~" class="btn btn-primary uk-card">~item~</button>'
     cardHTML += "</div>"
 
     class card {
